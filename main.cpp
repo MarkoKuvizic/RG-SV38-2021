@@ -245,7 +245,7 @@ int main(void)
     Circle moon(0.05, 0, 0, island_texture);
     Circle sun(0.1, 0, 0, sunTexture);
 
-    float speed = 0.0003;
+    float speed = 0.03;
     SharkFin sf(0, 0.7, sharkTexture, 1);
     SharkFin sf2(0, 0.7, sharkTexture, -1);
 
@@ -458,11 +458,12 @@ int main(void)
         
         if (glfwGetKey(window, GLFW_KEY_EQUAL) == GLFW_PRESS)
         {
-            speed += 0.000001;
+            
+            speed += 0.001;
         }
         if (glfwGetKey(window, GLFW_KEY_MINUS) == GLFW_PRESS)
         {
-            speed -= 0.000001;
+            speed -= 0.001;
         }
         if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
         {
