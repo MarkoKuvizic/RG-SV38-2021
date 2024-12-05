@@ -362,6 +362,7 @@ int main(void)
 
     while (!glfwWindowShouldClose(window))
     {
+        float sTime = glfwGetTime();
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         {
             glfwSetWindowShouldClose(window, GL_TRUE);
@@ -476,10 +477,15 @@ int main(void)
         {
             t = 0;
         }
+
         glfwSwapBuffers(window);
 
-        glfwPollEvents();
         t += speed;
+        float timeTaken = sTime - glfwGetTime();
+        if (timeTaken < 1.0f / 60.0f)
+            glfwWaitEventsTimeout(1.0f / (60.0f - timeTaken));
+        glfwPollEvents();
+
     }
 
 
