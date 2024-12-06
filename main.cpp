@@ -38,6 +38,7 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 void GLAPIENTRY DebugCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam) {
     std::cout << "OpenGL Debug Message: " << message << std::endl;
 }
+int pressed = 0;
 GLFWcursor* createCursorFromImage(const char* filepath, int hotspotX, int hotspotY) {
     int width, height, channels;
     unsigned char* data = stbi_load(filepath, &width, &height, &channels, 4); 
@@ -466,12 +467,18 @@ int main(void)
         {
             speed -= 0.001;
         }
-        if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS && pressed <= 0)
         {
-            if (wAlpha == 1)
+            if (wAlpha == 1) {
                 wAlpha = 0.4;
-            else
+            }
+            else {
                 wAlpha = 1;
+            }
+            pressed = 10;
+        }
+        if (pressed > 0) {
+            pressed--;
         }
         if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
         {
